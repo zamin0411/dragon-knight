@@ -9,6 +9,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject mainMenuScreen;
     [SerializeField] private AudioClip gameOverSound;
     [SerializeField] private AudioClip mainMenuSound;
+    [SerializeField] private GameObject victoryScreen;
+    [SerializeField] private AudioClip victorySound;
 
     private void Awake()
     {
@@ -16,6 +18,8 @@ public class UIManager : MonoBehaviour
         {
             gameOverScreen.SetActive(false);
         }
+        if (victoryScreen != null)
+            victoryScreen.SetActive(false);
 
 
     }
@@ -32,6 +36,13 @@ public class UIManager : MonoBehaviour
     {
         gameOverScreen.SetActive(true);
         SoundManager.instance.PlaySound(gameOverSound);
+    }
+
+    public void Victory()
+    {
+        victoryScreen.SetActive(true);
+        SoundManager.instance.PlaySound(victorySound);
+
     }
 
     public void StartGame()

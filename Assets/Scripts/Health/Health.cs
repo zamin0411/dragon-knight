@@ -5,10 +5,10 @@ using UnityEngine;
 public class Health : MonoBehaviour
 {
     [Header("Health")]
-    [SerializeField] private float startingHealth;
-    public float currentHealth { get; private set; }
-    private Animator anim;
-    private bool dead;
+    [SerializeField] protected float startingHealth;
+    public float currentHealth { get; protected set; }
+    protected Animator anim;
+    protected bool dead;
 
     [Header("iFrames")]
     [SerializeField] private float iFramesDuration;
@@ -16,14 +16,16 @@ public class Health : MonoBehaviour
     private SpriteRenderer spriteRenderer;
 
     [Header("Components")]
-    [SerializeField] private Behaviour[] components;
-    private bool invulnerable;
+    [SerializeField] protected Behaviour[] components;
+    public bool invulnerable;
 
     [Header("Death Sound")]
-    [SerializeField] private AudioClip deathSound;
+    [SerializeField] protected AudioClip deathSound;
     [SerializeField] private AudioClip hurtSound;
 
-    private void Awake()
+
+
+    protected void Awake()
     {
         currentHealth = startingHealth;
         anim = GetComponent<Animator>();
@@ -46,7 +48,7 @@ public class Health : MonoBehaviour
         }
     }
 
-    public void TakeDamage(float _damage)
+    public virtual void TakeDamage(float _damage)
     {
         if (invulnerable) return;
         //So the health can't go below 0
@@ -54,11 +56,18 @@ public class Health : MonoBehaviour
 
         if (currentHealth > 0)
         {
+            
+            
             //Player hurt
-            anim.SetTrigger("hurt");
+            if (gameObject.layer == 8)
+            {
+                anim.SetTrigger("hurt");
+                SoundManager.instance.PlaySound(hurtSound);
+                StartCoroutine(Invulnerability());      
+            }
             //iframes
-            StartCoroutine(Invulnerability());
-            SoundManager.instance.PlaySound(hurtSound);
+            
+            
         }
         else
         {
@@ -89,7 +98,7 @@ public class Health : MonoBehaviour
         currentHealth = Mathf.Clamp(currentHealth + _value, 0, startingHealth);
     }
 
-    private IEnumerator Invulnerability()
+    protected IEnumerator Invulnerability()
     {
         invulnerable = true;
         Physics2D.IgnoreLayerCollision(8, 9, true);

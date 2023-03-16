@@ -5,12 +5,6 @@ using UnityEngine;
 public class MeleeEnemy : Enemy
 {
 
-    private void Awake()
-    {
-        anim = GetComponent<Animator>();
-        enemyPatrol = GetComponentInParent<EnemyPatrol>();
-    }
-
     // Update is called once per frame
     void Update()
     {

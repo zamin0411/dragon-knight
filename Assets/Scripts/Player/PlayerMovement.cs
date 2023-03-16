@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
     private float coyoteCounter; //How much time passed since the player ran off the edge
 
     [Header("Layers")]
+    [SerializeField] private LayerMask upGroundLayer;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private LayerMask wallLayer;
 
@@ -78,8 +79,8 @@ public class PlayerMovement : MonoBehaviour
         if (onWall())
         {
             //Make the player not slide off the wall
-            body.gravityScale = 0;
-            body.velocity = Vector2.zero;
+            //body.gravityScale = 0;
+            //body.velocity = Vector2.zero;
         }
         else
         {
@@ -107,7 +108,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (onWall())
         {
-            WallJump();
+            //WallJump();
         }
         else
         {
@@ -157,8 +158,10 @@ public class PlayerMovement : MonoBehaviour
 
     private bool isGrounded()
     {
-        RaycastHit2D raycastHit = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0, Vector2.down, 0.1f, groundLayer);
-        return raycastHit.collider != null;
+        RaycastHit2D raycastHitGround = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0, Vector2.down, 0.1f, groundLayer);
+        RaycastHit2D raycastHitUpGround = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0, Vector2.down, 0.1f, upGroundLayer);
+
+        return raycastHitGround.collider != null || raycastHitUpGround.collider != null;
     }
 
     private bool onWall()
@@ -174,5 +177,6 @@ public class PlayerMovement : MonoBehaviour
                 wallLayer
             );
         return raycastHit.collider != null;
+        
     }
 }

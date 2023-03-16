@@ -4745,7 +4745,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 0de1970c9d993824586b1810f0e94263, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 497a7698f37a49841b748851d287ca49, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.15
   m_Pitch: 1
@@ -10392,6 +10392,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4876646086325925559, guid: 9e0daca33ea1e524fbf1a9530c918a4c, type: 3}
+      propertyPath: hurtSound
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4876646086325925559, guid: 9e0daca33ea1e524fbf1a9530c918a4c, type: 3}
+      propertyPath: deathSound
+      value: 
+      objectReference: {fileID: 8300000, guid: e0150789267c5ea4499b22d4a785c5e8, type: 3}
     - target: {fileID: 4876646086325925567, guid: 9e0daca33ea1e524fbf1a9530c918a4c, type: 3}
       propertyPath: m_Name
       value: Player

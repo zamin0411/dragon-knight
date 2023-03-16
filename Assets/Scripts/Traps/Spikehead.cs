@@ -77,9 +77,12 @@ public class Spikehead : EnemyDamage
 
     private new void OnTriggerEnter2D(Collider2D collision)
     {
-        SoundManager.instance.PlaySound(impactSound);
-        base.OnTriggerEnter2D(collision);
-        //Stop spikehead once it hits something
-        Stop();
+        if (collision.tag == "Player" || collision.gameObject.layer == 6 || collision.tag == "Door" || collision.tag == "Wall")
+        {
+            SoundManager.instance.PlaySound(impactSound);
+            base.OnTriggerEnter2D(collision);
+            //Stop spikehead once it hits something
+            Stop();
+        }
     }
 }

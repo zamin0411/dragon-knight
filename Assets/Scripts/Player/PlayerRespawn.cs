@@ -50,8 +50,14 @@ public class PlayerRespawn : MonoBehaviour
             SoundManager.instance.PlaySound(checkpointSound);
             collision.GetComponent<Collider2D>().enabled = false; //Deactivate collider
             StartCoroutine(EndGame());
+            
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
+        }
 
-            SceneManager.LoadScene(2);
+        if (collision.transform.tag == "Victory")
+        {
+            uiManager.Victory();
+            return;
         }
     }
 

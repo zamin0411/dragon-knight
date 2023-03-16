@@ -29,4 +29,9 @@ public abstract class Enemy : MonoBehaviour
 
     public abstract bool PlayerInSight();
     public abstract void OnDrawGizmos();
+    protected virtual void Awake()
+    {
+        anim = GetComponent<Animator>();
+        enemyPatrol = GetComponentInParent<EnemyPatrol>();
+    }
 }

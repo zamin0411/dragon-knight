@@ -9,6 +9,8 @@ TagManager:
   - Checkpoint
   - Door
   - EndGame
+  - Trap
+  - Victory
   layers:
   - Default
   - TransparentFX
@@ -20,13 +22,13 @@ TagManager:
   - Wall
   - Player
   - Enemy
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Boss
+  - UpGround
+  - CameraBounds
+  - Trap
+  - Projectile
+  - Collectible
+  - EnemyProjectile
   - 
   - 
   - 

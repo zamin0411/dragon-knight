@@ -9,13 +9,6 @@ public class RangedEnemy : Enemy
     [SerializeField] private Transform firePoint;
     [SerializeField] private GameObject[] fireballs;
 
-
-    private void Awake()
-    {
-        anim = GetComponent<Animator>();
-        enemyPatrol = GetComponentInParent<EnemyPatrol>();
-    }
-
     private void RangedAttack()
     {
         SoundManager.instance.PlaySound(attackSound);
